@@ -18,11 +18,7 @@ SCL180 PDK.
 
 ## Note on Repository Contents
 
-Tool scripts (`.tcl`), constraint files (`.sdc`), and I/O configuration
-files used in each stage have been excluded from this repository under
-an NDA covering the PDK and flow scripts used during this internship.
-Each stage folder instead contains a `.txt` summary describing the
-tools, workflow, and key learnings from that stage, along with output
-screenshots from Cadence Innovus/Genus.
+*Flow scripts and constraint files are omitted; each stage folder includes a summary and output screenshots instead.*
+
 
 See `PROJECT_REPORT.md.txt` for a full write-up of the project.
