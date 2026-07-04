@@ -39,10 +39,5 @@ digital implementation flow on the SCL180 PDK.
 
 ## 4. Repository Note
 
-Due to an NDA covering the SCL180 PDK and internal flow scripts used
-during this internship, the `.tcl` run scripts, `.sdc` constraint
-files, and I/O configuration files have been removed from this
-repository. Each stage folder instead contains a text summary
-describing the tools used, the workflow followed, and the key
-takeaways from that stage, alongside the corresponding Cadence
-Innovus/Genus output screenshots.
+Tool scripts and constraint files are not included in this repository. Each stage folder contains a summary describing the workflow and key takeaways, alongside the corresponding output screenshots.
+
