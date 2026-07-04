@@ -1,0 +1,34 @@
+====================================================================
+STAGE 4: POWER PLANNING (CADENCE INNOVUS)
+====================================================================
+This folder contains:
+- VDD/VSS Power Ring and Stripe Specifications
+- Power Grid Verification Reports
+- Power Plan Layout Screenshot
+
+Tools Used:
+- Cadence Innovus
+
+Workflow:
+1. Connected global power/ground pins (VDD, VSS, VDDO, VSSO) and
+   tie-high/tie-low nets across every instance in the design using
+   globalNetConnect.
+2. Created core power rings for VDD_CORE and VSS_CORE around the core
+   boundary on the M5/TOP_M metal layers, 25 micron wide with 25
+   micron spacing and a 1.8 micron offset from the core edge.
+3. Added vertical power stripes on the TOP_M layer (10 micron wide,
+   10 micron spacing, 100 micron set-to-set distance) to distribute
+   supply current evenly across the core.
+4. Routed the power rings/stripes down to standard-cell power pins
+   using sroute, allowing layer changes between M1 and TOP_M.
+5. Verified connectivity, ran a full design check, and re-checked
+   pre-placement timing on the powered floorplan.
+
+Learning Outcomes:
+- Mastered structural power planning (rings + stripes) to ensure
+  uniform voltage delivery across the core.
+- Learned how robust power grids prevent local IR voltage drops
+  across a running chip.
+- Understood how sroute connects the global power mesh down to
+  individual standard-cell power pins.
+====================================================================

@@ -1,0 +1,34 @@
+====================================================================
+STAGE 7: ROUTING (CADENCE INNOVUS - NANOROUTE)
+====================================================================
+This folder contains:
+- Post-Route Connectivity/Congestion Reports
+- Routing Layout Screenshot
+
+Tools Used:
+- Cadence Innovus (NanoRoute detailed router)
+
+Workflow:
+1. Configured NanoRoute for timing-driven and signal-integrity (SI)
+   aware routing, with the timing/congestion trade-off effort set to
+   favor congestion resolution.
+2. Enabled automatic antenna diode insertion using the design's
+   antenna repair cells so that long routed nets would not damage
+   thin-oxide transistor gates during fabrication.
+3. Ran routeDesign in global+detail mode with via and wire
+   optimization enabled, completing full global and detailed routing
+   of all signal and clock nets in a single pass.
+4. Checked routing connectivity and post-route congestion to confirm
+   no open nets, dislocated terminals, or unresolved hotspots
+   remained.
+
+Learning Outcomes:
+- Learned how timing-driven and SI-driven routing settings influence
+  net ordering and shielding decisions during detailed routing.
+- Understood the purpose of antenna diode insertion as a
+  manufacturing reliability safeguard against plasma-induced gate
+  damage.
+- Learned how post-route congestion and connectivity reports validate
+  that the routed design is both electrically complete and physically
+  clean.
+====================================================================

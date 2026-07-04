@@ -1,0 +1,35 @@
+====================================================================
+STAGE 6: CLOCK TREE SYNTHESIS (CADENCE INNOVUS - CCOPT)
+====================================================================
+This folder contains:
+- Skew Group Summary Report
+- CTS Layout Screenshots (pre- and post-CTS clock tree views)
+
+Tools Used:
+- Cadence Innovus (CCOpt clock concurrent optimization engine)
+
+Workflow:
+1. Defined clock tree synthesis targets using set_ccopt_property,
+   setting a target skew of 0.5 ns on the min-delay corner for the
+   ptm_clk network.
+2. Enabled useful-skew optimization both before CTS and after
+   post-route optimization, allowing the tool to intentionally
+   advance/delay sequential elements' clock arrival to recover setup
+   slack, bounded by a 1 ns maximum borrowed delay per flop.
+3. Built the clock tree (buffers/inverters distributing ptm_clk to
+   all sequential elements) and generated a skew-group summary report
+   to confirm the tree met its target skew.
+4. Allowed ECO routing during useful-skew insertion so that any nets
+   added or modified by clock optimization were immediately routed by
+   the detail router.
+
+Learning Outcomes:
+- Learned the difference between balanced-skew and useful-skew clock
+  tree synthesis, and when intentionally allowing skew improves
+  overall timing closure.
+- Understood how a target skew constraint governs buffer sizing and
+  tree topology during CCOpt.
+- Learned why post-CTS timing is meaningfully different from pre-CTS
+  (ideal clock) timing, requiring re-verification after tree
+  construction.
+====================================================================

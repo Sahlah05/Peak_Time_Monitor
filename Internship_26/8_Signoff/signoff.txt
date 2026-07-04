@@ -1,0 +1,39 @@
+====================================================================
+STAGE 8: SIGNOFF & GDSII STREAMOUT (CADENCE INNOVUS)
+====================================================================
+This folder contains:
+- Setup/Hold Signoff Timing Reports
+- Geometry, DRC, Antenna, and Connectivity Reports
+- Final Signoff Netlists, SDC, SDF, and SPEF
+- Signoff Layout Screenshot
+
+Tools Used:
+- Cadence Innovus
+
+Workflow:
+1. Ran full signoff-mode static timing analysis for both setup and
+   hold, capturing final timing margins after all post-route
+   optimization.
+2. Ran final geometry verification, DRC, process-antenna checking,
+   and full-design connectivity checking with tightened error/warning
+   limits appropriate for tape-out signoff.
+3. Generated the final signoff deliverables: the post-route netlist
+   (with and without power/ground), the signoff SDC, a signoff SDF for
+   back-annotated gate-level simulation, and an SPEF file for parasitic
+   extraction.
+4. Streamed out the final GDSII using a 6-metal-layer (M1-M5 + TOP_M)
+   layer map, completing the digital implementation flow.
+5. Generated a consolidated set of design-health, constraint,
+   coverage, and detailed timing (GBA and PBA) reports for final
+   documentation.
+
+Learning Outcomes:
+- Learned the distinction between optimization-time timing checks and
+  final signoff-mode STA, and why signoff numbers are the ones that
+  matter for tape-out.
+- Understood how DRC, antenna, and connectivity checks at signoff
+  differ in strictness from earlier-stage checks.
+- Learned the purpose of each final deliverable (netlist, SDC, SDF,
+  SPEF, GDSII) in the handoff from digital implementation to
+  fabrication.
+====================================================================

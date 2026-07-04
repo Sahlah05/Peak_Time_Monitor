@@ -1,0 +1,39 @@
+====================================================================
+STAGE 2: SYNTHESIS (CADENCE GENUS)
+====================================================================
+This folder contains:
+- Timing, Power, Gate Count, and Area Reports
+- Synthesis Output Screenshot
+
+Tools Used:
+- Cadence Genus Synthesis Solution
+
+Workflow:
+1. Set up the SCL180 standard cell and I/O pad liberty libraries
+   (slow/fast corners) for timing and power characterization.
+2. Read in the RTL (ptm_main.v, ptm.v, clk_div.v) and elaborated the
+   design, running check_design to confirm a clean, unresolved-free
+   netlist.
+3. Applied SDC constraints: a 30 ns clock period on ptm_clk, setup/
+   hold clock uncertainty, input/output delays relative to the clock,
+   an output load of 0.05 pF, and false-path/path-grouping exceptions
+   for the asynchronous reset.
+4. Ran the three-stage synthesis flow -- generic mapping, technology
+   mapping, and incremental optimization -- generating the mapped
+   Verilog netlist and updated SDC at each stage.
+5. Generated Logical Equivalence Check (LEC) scripts to verify the
+   mapped netlist against the RTL golden model.
+6. Generated PPA (Power, Performance, Area) sign-off reports and an
+   SDF file for back-annotated timing simulation.
+
+Learning Outcomes:
+- Learned how SDC constraints (clock definition, I/O delays,
+  uncertainty, false paths) directly shape the synthesis tool's
+  optimization targets.
+- Understood the generic -> map -> incremental optimization flow and
+  why reports are captured at each stage to track QoR (Quality of
+  Results) progression.
+- Learned how to interpret timing, power, gate count, and area
+  reports to sanity-check a synthesized netlist before moving to
+  physical design.
+====================================================================

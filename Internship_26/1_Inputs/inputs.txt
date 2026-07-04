@@ -1,0 +1,48 @@
+====================================================================
+STAGE 1: DESIGN INPUTS & SIMULATION
+====================================================================
+This folder contains:
+- RTL Source Files (rtl/)
+- Testbench (tb/)
+- Simulation Output Screenshot
+
+Design Overview:
+The Peak Time Monitor (PTM) is a small sequential design that tracks
+the highest sampled value ("peak") on an 8-bit input bus and records
+the number of clock cycles elapsed since the previous peak
+("interval"). Sampling of data_in happens once every DIV_RATIO
+system clock cycles via an internally generated clock-enable pulse
+from the clk_div submodule.
+
+Module Hierarchy:
+- ptm.v        : Core peak-tracking logic + clk_div instantiation
+- clk_div.v    : Free-running clock divider generating clk_en
+- ptm_main.v   : Padded top-level wrapper instantiating I/O pad
+                 cells (pc3c01/pc3d01/pc3o05) around the ptm core,
+                 used as the synthesis/APR top module
+
+Tools Used:
+- Xilinx Vivado / ModelSim (RTL simulation)
+
+Workflow:
+1. Wrote the ptm core module with a parameterized DIV_RATIO and an
+   internal free-running timer to compute inter-peak intervals.
+2. Wrote a self-checking testbench with a golden reference model that
+   mirrors the DUT's sampling behavior cycle-for-cycle.
+3. Applied a directed stimulus sequence covering rising peaks,
+   non-peak samples, repeated equal-value samples, and a mid-sequence
+   reset, verifying both the peak and interval outputs after every
+   sample.
+4. Confirmed 100% pass count across all applied vectors before moving
+   to synthesis.
+
+Learning Outcomes:
+- Learned how to build a self-checking testbench with a cycle-accurate
+  reference model instead of relying on fixed expected-value vectors.
+- Understood the difference between edge-triggered capture and
+  level-based enable signals, and why waiting on the correct clock
+  edge matters for testbench correctness.
+- Learned how to separate core logic (ptm) from the physical I/O
+  wrapper (ptm_main) so the same RTL can be simulated standalone and
+  also padded for silicon implementation.
+====================================================================

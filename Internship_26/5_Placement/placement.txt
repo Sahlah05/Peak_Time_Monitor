@@ -1,0 +1,37 @@
+====================================================================
+STAGE 5: PLACEMENT (CADENCE INNOVUS)
+====================================================================
+This folder contains:
+- Cell/Pin Density and Congestion Maps
+- Pre-CTS Timing Reports
+- Pre-CTS Netlist
+- Placement Layout Screenshot
+
+Tools Used:
+- Cadence Innovus
+
+Workflow:
+1. Configured placement mode with a high global congestion effort and
+   a maximum global placement density of 0.8, without concurrent I/O
+   pin placement or clock-gate-aware placement.
+2. Ran place_opt_design to perform global placement, legalization,
+   detailed placement, and in-place optimization in a single pass,
+   then verified legality with checkPlace.
+3. Generated cell density, pin density, and routing congestion maps
+   (20x20 grid) to identify hotspots before committing to CTS.
+4. Ran an iterative setup-timing check/optimize loop
+   (report_timing -> optDesign -preCTS) up to four times, only
+   invoking optimization when worst slack fell below a 0.2 ns
+   threshold.
+5. Saved the pre-CTS netlist (with and without power/ground) and SDC
+   for hand-off into clock tree synthesis.
+
+Learning Outcomes:
+- Learned how global placement density and congestion effort settings
+  trade off routability against cell packing.
+- Understood how density/congestion maps are used to catch local
+  hotspots before they become routing violations.
+- Learned why pre-CTS timing closure is checked iteratively rather
+  than assumed, since ideal (zero-skew) clock timing at this stage is
+  optimistic compared to post-CTS reality.
+====================================================================

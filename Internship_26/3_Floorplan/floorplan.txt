@@ -1,0 +1,34 @@
+====================================================================
+STAGE 3: FLOORPLANNING (CADENCE INNOVUS)
+====================================================================
+This folder contains:
+- Floorplan Geometry, DRC, and Connectivity Reports
+- Floorplan Layout Screenshot
+
+Tools Used:
+- Cadence Innovus
+
+Workflow:
+1. Imported the synthesized netlist, SDC, and SCL180 LEF/Milkyway
+   libraries into Innovus and generated a net-count report to confirm
+   a clean design import.
+2. Defined the die as a 1940 x 1940 micron square with a uniform
+   125 micron margin between the core and the die/I/O boundary on all
+   four sides, using the CoreSite core row site.
+3. Added routing tracks honoring the LEF-specified pitch, and
+   populated the remaining gaps in the I/O ring with I/O filler cells
+   of decreasing width to close out the pad ring.
+4. Ran geometry, DRC, and connectivity verification on the floorplan,
+   followed by a pre-placement timing check to catch any gross timing
+   issues before placement.
+5. Saved the floorplan database at each major checkpoint (post
+   floorplan, post I/O filler) for traceability.
+
+Learning Outcomes:
+- Learned how die size and core-to-I/O margins are chosen to fit a
+  design's cell count and I/O pad ring together.
+- Understood the role of I/O filler cells in closing electrical and
+  physical gaps in the pad ring.
+- Learned why floorplan-stage DRC/connectivity/timing checks are run
+  early, before committing time to placement and routing.
+====================================================================
